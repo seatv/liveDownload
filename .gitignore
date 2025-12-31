@@ -1,0 +1,43 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Archives (don't commit built packages)
+*.zip
+*.tar.gz
+*.rar
+
+# Node modules (if any)
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Private keys
+*.pem
+*.key
+
+# Development artifacts
+*.crx
+*.pem
