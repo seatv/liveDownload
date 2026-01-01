@@ -1,0 +1,503 @@
+/* liveDownload - Modern Blue UI */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  color: white;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.app-header h1 .version-tag {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.app-header .version-tag {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.app-header .version-tag {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.settings-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.settings-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Main Container */
+.app-container {
+  width: 100%;
+  margin: 0;
+  padding: 24px 4px;
+}
+
+/* Section Cards */
+.section-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-card#streams-section {
+  max-height: 500px;
+}
+
+.section-header {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Scrollable streams content */
+#streams-content {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+#streams-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#streams-content::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+#streams-content::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+#streams-content::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Streams Table */
+.streams-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.streams-table thead {
+  background: #f1f5f9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.streams-table th {
+  text-align: left;
+  padding: 12px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.streams-table th:first-child {
+  width: 40px;
+  text-align: center;
+}
+
+.streams-table td {
+  padding: 10px 8px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 13px;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.streams-table td:first-child {
+  text-align: center;
+}
+
+.streams-table tbody tr {
+  transition: background 0.15s;
+}
+
+.streams-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.streams-table tbody tr.live-stream {
+  background: #fef2f2;
+}
+
+.streams-table tbody tr.live-stream:hover {
+  background: #fee2e2;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #3b82f6;
+}
+
+/* Stream Name */
+.stream-name {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* Segment Type */
+.segment-type {
+  color: #64748b;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Format Badge */
+.format-badge {
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 11px;
+}
+
+.format-badge.m3u8 {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.format-badge.m4s {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.format-badge.ts {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.format-badge.mp4 {
+  color: #ea580c;
+  background: #ffedd5;
+}
+
+/* Stream Size */
+.stream-size {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Stream Link */
+.stream-link {
+  color: #64748b;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+/* Action Buttons */
+.action-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.action-btn.record {
+  background: #dc2626;
+  color: white;
+}
+
+.action-btn.record:hover {
+  background: #b91c1c;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.action-btn.download {
+  background: #3b82f6;
+  color: white;
+}
+
+.action-btn.download:hover {
+  background: #2563eb;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Download Selected Container */
+.download-selected-container {
+  padding: 16px 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.download-selected-btn {
+  padding: 10px 24px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.download-selected-btn:hover:not(:disabled) {
+  background: #2563eb;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.download-selected-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.selection-count {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Info Table */
+.info-table {
+  width: 100%;
+}
+
+.info-table tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.info-table tr:last-child {
+  border-bottom: none;
+}
+
+.info-table td {
+  padding: 12px 12px;
+}
+
+.info-table td:first-child {
+  font-weight: 600;
+  color: #475569;
+  width: 120px;
+  font-size: 13px;
+}
+
+.info-table td:last-child {
+  color: #1e293b;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: #94a3b8;
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #64748b;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+/* Recording Badge */
+.recording-badge {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  z-index: 1000;
+}
+
+.recording-badge.active {
+  display: block;
+}
+
+.recording-badge .status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #dc2626;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.recording-badge .pulse {
+  width: 8px;
+  height: 8px;
+  background: #dc2626;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.recording-badge .stats {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.stop-recording-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.stop-recording-btn:hover {
+  background: #b91c1c;
+}
+
+/* Hide old UI elements */
+#intro,
+#tools,
+#progress,
+#forbidden-container,
+#live-controls,
+#hrefs-container,
+footer {
+  display: none !important;
+}
+
+/* Batch Progress Indicator */
+.batch-progress {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.batch-progress-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.batch-progress-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.batch-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1e40af);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
